@@ -20,6 +20,8 @@ public interface TestCaseService {
 
     Collection<TestCase> getAllTestCasesByID(TestPlan testplan);
     
+    Collection<TestCase> getAllTestCasesByName(String testcasename);
+    
     Collection<TestCase> getAllTestCases();
 
     void addNewTestCase(TestCase testcase,TestPlan testplan);

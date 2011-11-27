@@ -58,7 +58,12 @@ public class HibernateTestPlanRespository implements TestPlanRepository {
     public TestPlan findById(Long id) {
 	return get(id);
     }
-
+    
+    public TestPlan findTestPlanByName(String testplanname) {        
+    	Query query = em.createQuery("from TestPlan where testplanName=:testplanname");
+    	query.setParameter("testplanname", testplanname);
+    	return (TestPlan) query.getSingleResult();
+    }
 //   private String getCurrentUser() {
 //	return SecurityContextHolder.getContext().getAuthentication().getName();
 //   }

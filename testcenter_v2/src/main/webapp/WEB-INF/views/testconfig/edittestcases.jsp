@@ -18,9 +18,27 @@
 		<a href="index.html"><img src="images/title.png"></a>
 		<a href="j_spring_security_logout">Logout <security:authentication property="principal.username"/></a> 
 		<hr>
-		<a href="newtestplan.html">New Test plan</a> | <a href="newtestcase.html">New Test Case</a> | 
-		<a href="viewtestplan.html">View Test plans</a> 
+			<a href="index.html">Home</a> |
+			<a href="newtestplan.html">Reports</a> |
+			<a href="testconfig.html">Tests</a> |	
+			<a href="newtestplan.html">New Test plan</a>  | 			
+			<a href="viewtestplan.html">Test plans</a>	|
+			<a href="newtestcase.html?testplanID=${testplanID}">New Test Case</a> |			
 		<hr>
+		<!-- 
+		<font size="1" color="blue">
+			<a href="index.html">Home</a> >
+			<a href="testconfig.html">Test Config</a> >
+			<a href="viewtestplan.html">Test plans</a> >
+			Enter Results
+		</font>
+		<br>
+		-->
+		<c:if test="${fn:length(errormessage) > 0}">  	
+			<hr>	
+		 		<font color="red">${errormessage}</font> 
+		 	<hr>
+		</c:if>
 			${testplanTester} -  ${testplanName} (total: ${fn:length(testcases)}) :
 		<table border="0">
 		<c:forEach var="testcase" items="${testcases}" varStatus="index">
@@ -133,7 +151,7 @@
 				<form name="deletetestcase" action="deletetestcase.html" method="get">
 					<input hidden="true" name="id" value="${testcase.id}">
 					<input hidden="true" name="testplanID" value="${testplanID}">
-					<INPUT type="image" src="images/delete.png" alt="Delete Test" title="Delete Test"  onclick="return confirm('Are you sure you want to delete Test Case (${testcase.id}) ?')">
+					<INPUT type="image" src="images/delete.png" alt="Delete Test" title="Delete Test"  onclick="return confirm('Are you sure you want to delete Test Case? \n\n ${testcase.id} : ${testcase.testcasename}')">
 				</form>										
 			</td>						
 		</tr>

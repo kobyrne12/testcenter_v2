@@ -34,6 +34,10 @@ public class TestCaseServiceImpl implements TestCaseService {
     public Collection<TestCase> getAllTestCasesByID(TestPlan testplan) {
     	return repo.findAllTestCasesByID(testplan);
     }
+    public Collection<TestCase> getAllTestCasesByName(String testcasename) {    	
+    	return repo.findAllTestCasesByName(testcasename);
+    }
+    
 
     public void addNewTestCase(TestCase testcase,TestPlan testplan) {
 	repo.create(testcase,testplan);

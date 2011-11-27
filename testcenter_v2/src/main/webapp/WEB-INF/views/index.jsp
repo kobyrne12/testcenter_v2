@@ -16,10 +16,11 @@
 	<body>
 		
 		<a href="index.html"><img src="images/title.png"></a>
-		<a href="j_spring_security_logout">Logout <security:authentication property="principal.username"/></a></br> </br>
+		<a href="j_spring_security_logout">Logout <security:authentication property="principal.username"/></a>
+		<hr>			
+			<a href="testconfig.html"> Test Config </a> |
+			<a href="testreports.html"> Test Reports </a> 
 		<hr>
-		<a href="testconfig.html"> Test Config </a> | <a href="testreports.html"> Test Reports </a> 
-		<hr>
-		
+			<!-- 2 Button menu  -->
 	</body>
 </html>

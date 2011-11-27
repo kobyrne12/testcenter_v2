@@ -56,6 +56,12 @@ public interface TestCaseRepository {
      */
     Collection<TestCase> findAllTestCasesByID(TestPlan testplan);
     /**
+     * Returns list of all testcases for the testplan specified by the testcasename
+     * 
+     * @return all testcase testcases for the testplan specified by the testcasename
+     */
+    Collection<TestCase> findAllTestCasesByName(String testcasename);
+    /**
      * Returns list of all testcases
      * 
      * @return all testcase

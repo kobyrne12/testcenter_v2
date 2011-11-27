@@ -22,7 +22,9 @@ public interface TestPlanService {
     void addNewTestPlan(TestPlan testplan);
 
     TestPlan getTestPlan(Long id);
-
+    
+    TestPlan getTestPlanByName(String testplanname);
+    
     void update(TestPlan testplan);
 
     void remove(Long id);

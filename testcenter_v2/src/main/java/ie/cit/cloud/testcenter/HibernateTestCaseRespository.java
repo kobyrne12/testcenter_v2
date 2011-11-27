@@ -48,12 +48,17 @@ public class HibernateTestCaseRespository implements TestCaseRepository {
     public void delete(TestCase testcase) {
 	em.remove(testcase);
     }
- 
     @SuppressWarnings("unchecked")
     public Collection<TestCase> findAllTestCasesByID(TestPlan testplan) {
     	Query query = em.createQuery("from TestCase where testplanName=:testplanName"); 
     	//TestPlan testplan = testplanService.getTestPlan(testplan);
     	query.setParameter("testplanName", testplan.getTestplanName());
+    	return (List<TestCase>) query.getResultList();
+    }
+    @SuppressWarnings("unchecked")
+    public Collection<TestCase> findAllTestCasesByName(String testcasename) {
+    	Query query = em.createQuery("from TestCase where testcasename=:testcasename");     	
+    	query.setParameter("testcasename", testcasename);
     	return (List<TestCase>) query.getResultList();
     }
     

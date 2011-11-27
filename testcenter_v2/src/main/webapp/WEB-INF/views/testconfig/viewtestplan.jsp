@@ -18,11 +18,14 @@
 		<a href="index.html"><img src="images/title.png"></a>
 		<a href="j_spring_security_logout">Logout <security:authentication property="principal.username"/></a> 
 		<hr>
-		<a href="newtestplan.html">New Test plan</a> | <a href="newtestcase.html">New Test Case</a> | 
-		<a href="edittestcases.html">Edit Test Cases</a>
+			<a href="index.html">Home</a> |
+			<a href="newtestplan.html">Reports</a> |
+			<a href="testconfig.html">Tests</a> |
+			<a href="newtestplan.html">New Test Plan</a> |			
 		<hr>
-		 <font color="red">${errormessage}</font> 
-		 <hr>
+		<c:if test="${fn:length(errormessage) > 0}">  		
+		 	<font color="red">${errormessage}</font> <hr>
+		</c:if>
 			List of current Test Plans (total: ${fn:length(testplans)}) :
 		<table  cellpadding="5" cellspacing="3">			
 			<tr style="background-color:#7F94B0">

@@ -17,20 +17,30 @@
 		<a href="index.html"><img src="images/title.png"></a>
 		<a href="j_spring_security_logout">Logout <security:authentication property="principal.username"/></a>
 		<hr>
-		<a href="newtestplan.html">New Test plan</a>  | 
-		<a href="edittestcases.html">Edit Tests</a> |
-		<a href="viewtestplan.html">View Test plans</a> 
+			<a href="index.html">Home</a> |
+			<a href="newtestplan.html">Reports</a> |
+			<a href="testconfig.html">Tests</a> |	
+			<a href="newtestplan.html">New Test plan</a>  | 			
+			<a href="viewtestplan.html">Test plans</a>	|
+			<a href="edittestcases.html">Enter Results</a>				
 		<hr>
-		 <font color="red">${errormessage}</font> 
-		<hr>
+		<!-- 
+		<font size="1" color="blue">
+			<a href="index.html">Home</a> >
+			<a href="testconfig.html">Test Config</a> >
+			<a href="viewtestplan.html">Test plans</a> >
+			New Test Case
+		</font>
+		<br>
+		-->
+		<c:if test="${fn:length(errormessage) > 0}">  	
+			<hr>	
+		 		<font color="red">${errormessage}</font> 
+		 	<hr>
+		</c:if>
 		<form method="post">
-			Test Plan:<br>
-			<select name="testplanID" rows="3">
-			<c:forEach var="testplan" items="${testplans}" varStatus="index">
-				<option value="${testplan.id}">${testplan.testplanName}</option>
-			</c:forEach>
-			</select>	 
-			<!-- <textarea name="testplanName" cols="50" rows="1"></textarea>-->
+			${testplanName}		
+			<input hidden="true" name="testplanID" value="${testplanID}">				
 			<br>
 			Test Title:<br>
 			<textarea name="testcasename" cols="50" rows="1"></textarea>

@@ -64,5 +64,14 @@ public interface TestPlanRepository {
      * @return Testplan for given id, null if test was not found
      */
     TestPlan findById(Long id);
+    /**
+     * Returns testplan items given by its name
+     * 
+     * @param id
+     *            testplan ID
+     * @return Testplan for given name, null if testplan was not found
+     */
+    TestPlan findTestPlanByName(String testplanname);
+    
 
 }

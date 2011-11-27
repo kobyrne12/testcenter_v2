@@ -20,9 +20,12 @@
 		<hr>
 			<a href="index.html">Home</a> |
 			<a href="newtestplan.html">Reports</a> |
-			<a href="newtestplan.html">New Test Plan</a> |
-			<a href="newtestcase.html">New Test Case</a> | 
+			<a href="newtestplan.html">New Test Plan</a> |			
 			<a href="viewtestplan.html">View Test plans</a> 
 		<hr>
+		<c:if test="${fn:length(errormessage) > 0}">  		
+		 	<font color="red">${errormessage}</font> <hr>
+		</c:if>
+			<!-- Button menu  -->
 	</body>
 </html>

@@ -38,7 +38,10 @@ public class TestPlanServiceImpl implements TestPlanService {
     public TestPlan getTestPlan(Long id) {
 	return repo.findById(id);
     }
-
+    public TestPlan getTestPlanByName(String testplanname) {
+    	return repo.findTestPlanByName(testplanname);
+    }
+   
     public void update(TestPlan testplan) {
 	repo.update(testplan);
     }
