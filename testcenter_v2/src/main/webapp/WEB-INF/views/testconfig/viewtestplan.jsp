@@ -21,6 +21,8 @@
 		<a href="newtestplan.html">New Test plan</a> | <a href="newtestcase.html">New Test Case</a> | 
 		<a href="edittestcases.html">Edit Test Cases</a>
 		<hr>
+		 <font color="red">${errormessage}</font> 
+		 <hr>
 			List of current Test Plans (total: ${fn:length(testplans)}) :
 		<table  cellpadding="5" cellspacing="3">			
 			<tr style="background-color:#7F94B0">
@@ -99,7 +101,6 @@
 						<input hidden="true" name="id" value="${testplan.id}">							
 						<input type="image" src="images/delete.png" alt="Delete Testplan" title="Delete Testplan"  onclick="return confirm('Are you sure you want to delete Test Plan (${testplan.testplanName}) ?')">
 					</form>		
-					<a href="deletetestplan.html?id=${testplan.id}">Delete</a>
 				</td>	
 			</tr>	
 		</c:forEach>

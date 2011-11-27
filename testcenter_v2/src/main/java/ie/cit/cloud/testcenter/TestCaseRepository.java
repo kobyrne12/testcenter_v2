@@ -48,15 +48,19 @@ public interface TestCaseRepository {
      * @param testcase
      */
     void delete(TestCase testcase);
-
-    // ================ various find-er methods ================
+   
+    /**
+     * Returns list of all testcases for the testplan specified
+     * 
+     * @return all testcase testcases for the testplan specified
+     */
+    Collection<TestCase> findAllTestCasesByID(TestPlan testplan);
     /**
      * Returns list of all testcases
      * 
      * @return all testcase
      */
-    Collection<TestCase> findAll(TestPlan testplan);
-
+    Collection<TestCase> findAllTestCases();
     /**
      * Returns testcase items given by its ID
      * 

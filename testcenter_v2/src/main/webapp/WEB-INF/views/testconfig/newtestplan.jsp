@@ -20,7 +20,7 @@
 		<a href="newtestcase.html">New Test Case</a> |		
 		<a href="viewtestplan.html">View Test plans</a> 
 		<hr>		
-		 <c:if test="${message}"> <font color="red">${message}</font> <hr></c:if>
+		 <font color="red">${errormessage}</font> <hr>
 		<form method="post">
 			<input hidden="true" name="testername" value="<security:authentication property="principal.username"/>">
 				

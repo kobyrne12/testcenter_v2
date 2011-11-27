@@ -18,8 +18,11 @@
 		<a href="index.html"><img src="images/title.png"></a>
 		<a href="j_spring_security_logout">Logout <security:authentication property="principal.username"/></a> 
 		<hr>
-		<a href="newtestplan.html">New Test plan</a> | <a href="newtestcase.html">New Test Case</a> | 
-		<a href="edittestcases.html">Edit Tests</a> | <a href="viewtestplan.html">View Test plans</a> 
+			<a href="index.html">Home</a> |
+			<a href="newtestplan.html">Reports</a> |
+			<a href="newtestplan.html">New Test Plan</a> |
+			<a href="newtestcase.html">New Test Case</a> | 
+			<a href="viewtestplan.html">View Test plans</a> 
 		<hr>
 	</body>
 </html>

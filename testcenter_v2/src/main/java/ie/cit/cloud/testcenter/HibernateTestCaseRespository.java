@@ -22,7 +22,9 @@ import org.springframework.stereotype.Repository;
 
 @Repository("hibernateTestCaseRespository")
 public class HibernateTestCaseRespository implements TestCaseRepository {
-
+	
+//	private TestPlanService testplanService;
+	
     @PersistenceContext
     private EntityManager em;
 
@@ -46,20 +48,22 @@ public class HibernateTestCaseRespository implements TestCaseRepository {
     public void delete(TestCase testcase) {
 	em.remove(testcase);
     }
-
+ 
     @SuppressWarnings("unchecked")
-    public Collection<TestCase> findAll(TestPlan testplan) {
-    	Query query = em.createQuery("from TestCase where testplanName=:testplanName");
-    	//query.setParameter("user", getCurrentUser());
+    public Collection<TestCase> findAllTestCasesByID(TestPlan testplan) {
+    	Query query = em.createQuery("from TestCase where testplanName=:testplanName"); 
+    	//TestPlan testplan = testplanService.getTestPlan(testplan);
     	query.setParameter("testplanName", testplan.getTestplanName());
     	return (List<TestCase>) query.getResultList();
     }
-   /* public Collection<TestCase> findAll() {
+    
+    @SuppressWarnings("unchecked")
+	public Collection<TestCase> findAllTestCases() {
 	Query query = em.createQuery("from TestCase where user=:user");
 	query.setParameter("user", getCurrentUser());
 	return (List<TestCase>) query.getResultList();
     }
-*/
+
     public TestCase findById(Long id) {
 	return get(id);
     }
@@ -67,5 +71,6 @@ public class HibernateTestCaseRespository implements TestCaseRepository {
     private String getCurrentUser() {
 	return SecurityContextHolder.getContext().getAuthentication().getName();
     }
+	
 
 }

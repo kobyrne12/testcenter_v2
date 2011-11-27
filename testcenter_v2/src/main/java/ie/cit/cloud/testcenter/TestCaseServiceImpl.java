@@ -28,8 +28,11 @@ public class TestCaseServiceImpl implements TestCaseService {
     @Qualifier("hibernateTestCaseRespository")
     TestCaseRepository repo;
 
-    public Collection<TestCase> getAllTestCases(TestPlan testplan) {
-	return repo.findAll(testplan);
+    public Collection<TestCase> getAllTestCases() {
+    	return repo.findAllTestCases();
+    }
+    public Collection<TestCase> getAllTestCasesByID(TestPlan testplan) {
+    	return repo.findAllTestCasesByID(testplan);
     }
 
     public void addNewTestCase(TestCase testcase,TestPlan testplan) {

@@ -18,7 +18,9 @@ import java.util.Collection;
  */
 public interface TestCaseService {
 
-    Collection<TestCase> getAllTestCases(TestPlan testplan);
+    Collection<TestCase> getAllTestCasesByID(TestPlan testplan);
+    
+    Collection<TestCase> getAllTestCases();
 
     void addNewTestCase(TestCase testcase,TestPlan testplan);
 

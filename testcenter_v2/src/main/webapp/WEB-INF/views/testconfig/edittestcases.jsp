@@ -21,15 +21,126 @@
 		<a href="newtestplan.html">New Test plan</a> | <a href="newtestcase.html">New Test Case</a> | 
 		<a href="viewtestplan.html">View Test plans</a> 
 		<hr>
-			List of current Tests (total: ${fn:length(testcases)}) :
-		<table>
+			${testplanTester} -  ${testplanName} (total: ${fn:length(testcases)}) :
+		<table border="0">
 		<c:forEach var="testcase" items="${testcases}" varStatus="index">
 		<tr>
-		<td>
-			<table>			
+			<td>${testcase.id}</td>					
+			<td width="5">
+			</td>
+			<td >${testcase.testcasename}</td>				
+			<td width="30">
+			</td>
+			<td><font color="#808080">${testcase.testcaseOS}</font></td>	
+			<td width="5">
+			</td>
+			<td>
+				<!-- Set states table -->
+				<table>
 				<tr>
-					<td>${index.count}.</td>
-					<td width="10"></td>
+				<td>
+				<c:choose>
+					<c:when test="${testcase.notrun}">
+						<img src="images/NA.png">
+					</c:when>
+					<c:otherwise>
+						<form name="notrun" action="notrun.html" method="get">
+							<input hidden="true" name="id" value="${testcase.id}">
+							<input hidden="true" name="testplanID" value="${testplanID}">								
+							<INPUT type="image" src="images/NA_blank.PNG" alt="Not Run" title="Not Run">
+						</form>
+					</c:otherwise>
+				</c:choose>	
+				</td>
+				<td>
+				<c:choose>
+					<c:when test="${testcase.passed}">
+						<img src="images/ok.png" alt="Passed" title="Passed" >
+					</c:when>
+					<c:otherwise>
+						<form name="passed" action="passed.html" method="get">
+							<input hidden="true" name="id" value="${testcase.id}">
+							<input hidden="true" name="testplanID" value="${testplanID}">
+							<INPUT type="image" src="images/ok_blank.PNG" alt="Passed" title="Passed">
+						</form>
+					</c:otherwise>
+				</c:choose>	
+				</td>
+				<td>
+				<c:choose>
+					<c:when test="${testcase.failed}">
+						<img src="images/no.png" alt="Failed" title="Failed">
+					</c:when>
+					<c:otherwise>
+						<form name="failed" action="failed.html" method="get">
+							<input hidden="true" name="id" value="${testcase.id}">
+							<input hidden="true" name="testplanID" value="${testplanID}">
+							<INPUT type="image" src="images/no_blank.PNG" alt="Failed" title="Failed">
+						</form>
+					</c:otherwise>
+				</c:choose>	
+				</td>
+				<td>
+				<c:choose>
+					<c:when test="${testcase.inprogress}">
+						<img src="images/IP.png">
+					</c:when>
+					<c:otherwise>
+						<form name="inprogress" action="inprogress.html" method="get">
+							<input hidden="true" name="id" value="${testcase.id}">
+							<input hidden="true" name="testplanID" value="${testplanID}">
+							<INPUT type="image" src="images/IP_blank.PNG" alt="In Progress" title="In Progress">
+						</form>
+					</c:otherwise>
+				</c:choose>
+				</td>
+				<td>
+				<c:choose>
+					<c:when test="${testcase.deferred}">
+						<img src="images/def.png">
+					</c:when>
+					<c:otherwise>
+						<form name="deferred" action="deferred.html" method="get">
+							<input hidden="true" name="id" value="${testcase.id}">
+							<input hidden="true" name="testplanID" value="${testplanID}">
+							<INPUT type="image" src="images/def_blank.PNG" alt="Deferred" title="Deferred">
+						</form>
+					</c:otherwise>
+				</c:choose>
+				</td>
+				<td>	
+				<c:choose>
+					<c:when test="${testcase.blocked}">
+						<img src="images/block.png">
+					</c:when>
+					<c:otherwise>
+						<form name="blocked" action="blocked.html" method="get">
+							<input hidden="true" name="id" value="${testcase.id}">
+							<input hidden="true" name="testplanID" value="${testplanID}">
+							<INPUT type="image" src="images/block_blank.png" alt="Blocked" title="Blocked">
+						</form>
+					</c:otherwise>
+				</c:choose>						
+				</td>
+																		
+				</tr>
+				</table>
+				<!-- End of Set states table -->
+			</td>	
+			<td width="15">
+			</td>
+			<td>	
+				<form name="deletetestcase" action="deletetestcase.html" method="get">
+					<input hidden="true" name="id" value="${testcase.id}">
+					<input hidden="true" name="testplanID" value="${testplanID}">
+					<INPUT type="image" src="images/delete.png" alt="Delete Test" title="Delete Test"  onclick="return confirm('Are you sure you want to delete Test Case (${testcase.id}) ?')">
+				</form>										
+			</td>						
+		</tr>
+		</c:forEach>
+		</table>		
+		<hr>
+		<!-- <td>${index.count}.</td>
 					<td>
 					
 						<c:if test="${testcase.notrun }"> <font color="blue">Not Run</font></c:if>
@@ -39,188 +150,6 @@
 						<c:if test="${testcase.deferred }"> <font color="purple">Deferred</font></c:if>
 						<c:if test="${testcase.blocked }"> <font color="black">Blocked</font></c:if>
 					</td>
-				</tr>
-				
-				<tr>
-					<td colspan="3">
-						<font color="blue"><u>Test Plan</u></font>
-					</td>									
-				</tr>
-				<tr>
-					<td colspan="2">
-					</td>
-						
-				</tr>
-				<tr>
-					<td colspan="3">
-						<font color="blue"><u>Test case name</u></font>
-					</td>									
-				</tr>
-				<tr>
-					<td colspan="2">
-					</td>
-					<td>${testcase.testcasename}</td>					
-				</tr>
-				
-				<tr>
-					<td colspan="3">
-						<font color="blue"><u>Test case Summary</u></font>
-					</td>									
-				</tr>
-				<tr>
-					<td colspan="2">
-					</td>
-					<td>${testcase.testcasesummary}</td>					
-				</tr>
-				
-				<tr>
-					<td colspan="3">
-						<font color="blue"><u>Test case Precondition</u></font>
-					</td>									
-				</tr>
-				<tr>
-					<td colspan="2">
-					</td>
-					<td>${testcase.testcasepre}</td>					
-				</tr>
-				
-				<tr>
-					<td colspan="3">
-						<font color="blue"><u>Test case Steps</u></font>
-					</td>									
-				</tr>
-				<tr>
-					<td colspan="2">
-					</td>
-					<td>${testcase.testcasesteps}</td>					
-				</tr>
-				
-				<tr>
-					<td colspan="3">
-						<font color="blue"><u>Test case Pass condition</u></font>
-					</td>									
-				</tr>
-				<tr>
-					<td colspan="2">
-					</td>
-					<td>${testcase.testcasepass}</td>					
-				</tr>
-				<tr>
-					<td colspan="3">
-						<font color="blue"><u>Test case OS</u></font>
-					</td>									
-				</tr>
-				<tr>
-					<td colspan="2">
-					</td>
-					<td>${testcase.testcaseOS}</td>					
-				</tr>
-				
-				
-			
-			</table>
-		</td>
-			<td>
-			here : ${testplanID}
-				<!-- Set states table -->
-					<table>
-					<tr>
-					<td>
-					<c:choose>
-						<c:when test="${testcase.notrun}">
-							<img src="images/NA.png">
-						</c:when>
-						<c:otherwise>
-							<form name="notrun" action="notrun.html" method="get">
-								<input hidden="true" name="id" value="${testcase.id}">
-								<input hidden="true" name="testplanID" value="${testplanID}">								
-								<INPUT type="image" src="images/NA_blank.PNG" alt="Not Run" title="Not Run">
-							</form>
-						</c:otherwise>
-					</c:choose>	
-					</td>
-					<td>
-					<c:choose>
-						<c:when test="${testcase.passed}">
-							<img src="images/ok.png" alt="Passed" title="Passed" >
-						</c:when>
-						<c:otherwise>
-							<form name="passed" action="passed.html" method="get">
-								<input hidden="true" name="id" value="${testcase.id}">
-								<INPUT type="image" src="images/ok_blank.PNG" alt="Passed" title="Passed">
-							</form>
-						</c:otherwise>
-					</c:choose>	
-					</td>
-					<td>
-					<c:choose>
-						<c:when test="${testcase.failed}">
-							<img src="images/no.png" alt="Failed" title="Failed">
-						</c:when>
-						<c:otherwise>
-							<form name="failed" action="failed.html" method="get">
-								<input hidden="true" name="id" value="${testcase.id}">
-								<INPUT type="image" src="images/no_blank.PNG" alt="Failed" title="Failed">
-							</form>
-						</c:otherwise>
-					</c:choose>	
-					</td>
-					<td>
-					<c:choose>
-						<c:when test="${testcase.inprogress}">
-							<img src="images/IP.png">
-						</c:when>
-						<c:otherwise>
-							<form name="inprogress" action="inprogress.html" method="get">
-								<input hidden="true" name="id" value="${testcase.id}">
-								<INPUT type="image" src="images/IP_blank.PNG" alt="In Progress" title="In Progress">
-							</form>
-						</c:otherwise>
-					</c:choose>
-					</td>
-					<td>
-					<c:choose>
-						<c:when test="${testcase.deferred}">
-							<img src="images/def.png">
-						</c:when>
-						<c:otherwise>
-							<form name="deferred" action="deferred.html" method="get">
-								<input hidden="true" name="id" value="${testcase.id}">
-								<INPUT type="image" src="images/def_blank.PNG" alt="Deferred" title="Deferred">
-							</form>
-						</c:otherwise>
-					</c:choose>
-					</td>
-					<td>	
-					<c:choose>
-						<c:when test="${testcase.blocked}">
-							<img src="images/block.png">
-						</c:when>
-						<c:otherwise>
-							<form name="blocked" action="blocked.html" method="get">
-								<input hidden="true" name="id" value="${testcase.id}">
-								<INPUT type="image" src="images/block_blank.png" alt="Blocked" title="Blocked">
-							</form>
-						</c:otherwise>
-					</c:choose>						
-					</td>	
-					<td>	
-						<form name="deletetestcase" action="deletetestcase.html" method="get">
-							<input hidden="true" name="id" value="${testcase.id}">
-							
-							<INPUT type="image" src="images/delete.png" alt="Delete Test" title="Delete Test"  onclick="return confirm('Are you sure you want to delete Test Case (${testcase.id}) ?')">
-						</form>										
-					</td>	
-													
-					</tr>
-					</table>
-					<!-- End of Set states table -->
-				
-			</td>
-		</tr>
-		</c:forEach>
-		</table>
-		
-		<hr>
+					-->
 	</body>
 </html>

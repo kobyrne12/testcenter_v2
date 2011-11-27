@@ -21,6 +21,8 @@
 		<a href="edittestcases.html">Edit Tests</a> |
 		<a href="viewtestplan.html">View Test plans</a> 
 		<hr>
+		 <font color="red">${errormessage}</font> 
+		<hr>
 		<form method="post">
 			Test Plan:<br>
 			<select name="testplanID" rows="3">
