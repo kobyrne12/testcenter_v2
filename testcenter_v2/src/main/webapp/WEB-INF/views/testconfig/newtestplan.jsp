@@ -17,10 +17,10 @@
 		<a href="index.html"><img src="images/title.png"></a>
 		<a href="j_spring_security_logout">Logout <security:authentication property="principal.username"/></a>
 		<hr>
-		<a href="newtestcase.html">New Test Case</a> | 
-		<a href="edittestcases.html">Edit Tests</a> |
+		<a href="newtestcase.html">New Test Case</a> |		
 		<a href="viewtestplan.html">View Test plans</a> 
-		<hr>
+		<hr>		
+		 <c:if test="${message}"> <font color="red">${message}</font> <hr></c:if>
 		<form method="post">
 			<input hidden="true" name="testername" value="<security:authentication property="principal.username"/>">
 				

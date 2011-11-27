@@ -121,6 +121,7 @@
 			</table>
 		</td>
 			<td>
+			here : ${testplanID}
 				<!-- Set states table -->
 					<table>
 					<tr>
@@ -132,6 +133,7 @@
 						<c:otherwise>
 							<form name="notrun" action="notrun.html" method="get">
 								<input hidden="true" name="id" value="${testcase.id}">
+								<input hidden="true" name="testplanID" value="${testplanID}">								
 								<INPUT type="image" src="images/NA_blank.PNG" alt="Not Run" title="Not Run">
 							</form>
 						</c:otherwise>
@@ -203,7 +205,7 @@
 					</c:choose>						
 					</td>	
 					<td>	
-						<form name="delete" action="delete.html" method="get">
+						<form name="deletetestcase" action="deletetestcase.html" method="get">
 							<input hidden="true" name="id" value="${testcase.id}">
 							
 							<INPUT type="image" src="images/delete.png" alt="Delete Test" title="Delete Test"  onclick="return confirm('Are you sure you want to delete Test Case (${testcase.id}) ?')">

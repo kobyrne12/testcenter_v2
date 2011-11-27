@@ -64,13 +64,11 @@
 				<td>
 					<font color="#707070">${testplan.id}</font>
 				</td>
-				<td>
-					
+				<td>					
 					<form action="edittestcases.html" method="get">
 						<input hidden="true" name="testplanID" value="${testplan.id}">
 						<input type="submit" value="${testplan.testplanName}">
-					</form>					
-					
+					</form>						
 				</td>
 				<td>
 					<font color="#707070">${testplan.testerName}</font>
@@ -95,7 +93,14 @@
 				</td>
 				<td align="center">
 					<font color="#505050">${testplan.totalBlocked}</font>
-				</td>			
+				</td>		
+				<td>
+					<form name="deletetestplan" action="deletetestplan.html" method="get">
+						<input hidden="true" name="id" value="${testplan.id}">							
+						<input type="image" src="images/delete.png" alt="Delete Testplan" title="Delete Testplan"  onclick="return confirm('Are you sure you want to delete Test Plan (${testplan.testplanName}) ?')">
+					</form>		
+					<a href="deletetestplan.html?id=${testplan.id}">Delete</a>
+				</td>	
 			</tr>	
 		</c:forEach>
 		</table>
