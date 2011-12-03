@@ -54,13 +54,13 @@ public interface TestCaseRepository {
      * 
      * @return all testcase testcases for the testplan specified
      */
-    Collection<TestCase> findAllTestCasesByID(TestPlan testplan);
+    Collection<TestCase> findAllTestCasesByID(Long testplanID,TestPlan testplan);
     /**
      * Returns list of all testcases for the testplan specified by the testcasename
      * 
      * @return all testcase testcases for the testplan specified by the testcasename
      */
-    Collection<TestCase> findAllTestCasesByName(String testcasename);
+    Collection<TestCase> findAllTestCasesByName(Long testplanID,String testcasename);
     /**
      * Returns list of all testcases
      * 
@@ -75,5 +75,14 @@ public interface TestCaseRepository {
      * @return testcase for given id, null if testcase was not found
      */
     TestCase findById(Long id);
+    /**
+     * Deletes All TestCases with associated testplan id
+     * 
+     * @param id
+     *            testplan ID
+     * @return 
+     * 
+     */
+	void deleteAllTestWithID(Long id);
 
 }

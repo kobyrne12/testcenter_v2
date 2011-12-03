@@ -19,7 +19,9 @@
 			expression="org.springframework.stereotype.Controller" />
 	</context:component-scan>
 
-	<jdbc:embedded-database id="dataSource" type="H2" />
+	
+	<!--<jdbc:embedded-database id="dataSource" type="H2" />-->
+	 <cloud:data-source id="dataSource" /> 
 
 	<bean id="org.h2.tools.Server-WebServer" class="org.h2.tools.Server"
 		factory-method="createWebServer" depends-on="dataSource" init-method="start"
@@ -49,14 +51,23 @@
 	</bean>
 
 	<security:http auto-config="true">
-		<security:intercept-url pattern="/*" access="ROLE_USER" />
+		<security:intercept-url pattern="/viewtests/view*" access="ROLE_USER,ROLE_ADMIN" />
+		<security:intercept-url pattern="/testconfig/enter*" access="ROLE_USER,ROLE_ADMIN" />
+		<security:intercept-url pattern="/testconfig/edit*" access="ROLE_ADMIN" />
+		<security:intercept-url pattern="/testconfig/new*" access="ROLE_ADMIN" />		
+		<security:intercept-url pattern="/testconfig/**" access="IS_AUTHENTICATED_FULLY" />
+		<!--  <security:access-denied-handler error-page="/testconfig/accessdenied.html?errormessage=You Must Login to access this page"/>-->
+        <security:form-login login-page='/index.html'
+                              authentication-failure-url="/index.html?errormessage=Incorrect username or password"
+                              default-target-url='/viewtests/viewtestplan.html'/>		
+		
 	</security:http>
 	
 	<security:global-method-security secured-annotations="enabled" />
 	
 	<security:authentication-manager>
 		<security:authentication-provider>
-			<security:password-encoder hash="md5" />
+			
 			<security:user-service properties="classpath:users.properties" />
 		</security:authentication-provider>
 	</security:authentication-manager>

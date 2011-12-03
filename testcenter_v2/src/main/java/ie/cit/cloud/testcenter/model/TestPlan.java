@@ -20,9 +20,14 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.PrimaryKeyJoinColumn;
+import javax.swing.text.Document;
 import javax.validation.constraints.Pattern;
 
 
+import org.hibernate.annotations.Cascade;
+import org.hibernate.annotations.ForeignKey;
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.NotEmpty;
@@ -33,7 +38,7 @@ public class TestPlan {
 
 	@Id        
 	@GeneratedValue
-	@Column(name = "testplan_id")
+	@Column(name = "testplanID")
     private Long id;
 	
 	@Length(min = 2, max = 32, message = "Testplan name must be between 2 to 32 characters.")

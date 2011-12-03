@@ -6,21 +6,124 @@
 <html>
 	<head>
 		<title>TestCenter</title>
-		<style type="text/css">
-		body {
-			font-family: Trebuchet MS, Verdana;
-			font-size: 12px;
-		}
-		</style>
+		<link rel="stylesheet" href="css/style.css" type="text/css" media="screen" />
 	</head>
-	<body>
+	<body  onload='document.f.j_username.focus();'>
 		
-		<a href="index.html"><img src="images/title.png"></a>
-		<a href="j_spring_security_logout">Logout <security:authentication property="principal.username"/></a>
-		<hr>			
-			<a href="testconfig.html"> Test Config </a> |
-			<a href="testreports.html"> Test Reports </a> 
-		<hr>
-			<!-- 2 Button menu  -->
+	<div id="container">
+	<div id="header">
+		<a href="index.html"><img src="images/title.png"></a>		
+	</div>
+	<security:authorize ifAnyGranted="ROLE_USER,ROLE_ADMIN">
+		<div id="loggedin">
+			<security:authentication property="principal.username"/>
+		</div>
+	</security:authorize>
+	<div >
+		<ul id="menu">					
+			<li><span class="current">Home</span></li>
+			<security:authorize ifAnyGranted="ROLE_USER,ROLE_ADMIN">			
+			<li><span><a href="viewtests/viewtestplan.html">Test Plans</a></span></li>			
+			</security:authorize>
+			<!-- <li><span><a href="testconfig/newtestplan.html">New Test Plan</a></span></li>	 -->				
+		</ul>
+	</div>
+	<div id="content">		
+		 
+		 <security:authorize ifAnyGranted="ROLE_USER,ROLE_ADMIN">           
+			<font color="green"> You are currently logged in as <security:authentication property="principal.username"/> - <a href="j_spring_security_logout">Logout</a> - or enter new login details below</font> 
+		 <br><hr> 	
+		</security:authorize>
+		<c:if test="${fn:length(errormessage) > 0}"> 				
+		 		<font color="red">${errormessage}</font> 
+		 	<hr>
+		</c:if>
+		<c:if test="${fn:length(sucessmessage) > 0}">  				
+		 		<font color="green">${sucessmessage}</font> 
+		 	<hr>
+		</c:if>	
+		
+		<form name='f' action='/testcenter_v2/j_spring_security_check' method='POST'>
+		<table align="center" border='0'>
+		<tr>
+		<td width="45%" align="center">	
+			<fieldset>
+			<legend>Enter Login Details:</legend>	
+			 <table border='0' width="350" height="150">
+			 	<tr>
+			    	<td height="5">
+			    		<!-- spacer -->
+			    	</td>
+			    </tr>
+			    <tr><td>User:</td><td><input type='text' name='j_username' value=''></td></tr>
+			    <tr><td>Password:</td><td><input type='password' name='j_password'/></td></tr>
+			    <tr>
+			    	<td>
+			    		<input type="checkbox" id="remember_me" name="_remember_me" checked />
+			    		<label for="remember_me">Keep me logged in</label>
+			    	</td>		    
+			    </tr>
+			    <tr>
+			    	<td colspan='2' align="right">
+			    		<table>
+			    		<tr>
+						    <td>
+						    	<input value="Login" name="submit" type="submit"/>
+						    </td>
+						    <td>
+						    	<input name="reset" type="reset"/>
+						    </td>
+					    </tr>
+					    </table>
+					</td>
+			    </tr>
+			  </table>
+			</fieldset>
+		  </td>
+		  <td width="10%" >
+		  </td>
+		  <td width="45%" align="center">
+		  	<fieldset>
+			    <legend>Test Login Details:</legend>
+			    <table cellpadding="5" width="350" height="150">
+			    <tr>
+			    	<td height="5">
+			    		<!-- spacer -->
+			    	</td>
+			    </tr>
+			    <tr>
+			    	<td>Admin Details:</td>
+			    	<td>kenneth</td>
+			    	<td>password</td>
+			    </tr>
+			    <tr>
+			    	<td>User Details:</td>
+			    	<td>igor</td>
+			    	<td>password</td>
+			    </tr>
+			    <tr>
+			    	<td height="5">
+			    		<!-- spacer -->
+			    	</td>
+			    </tr>
+			     <tr>
+			     	<td colspan="3">
+			    	<font color="#707070">Only Admin can create Test Plans and Test Cases</font>
+			    	</td>
+			    </tr>
+			    </table>			   		    
+			 </fieldset>
+		  </td>
+		</tr>
+		</table>
+		</form>
+	</div>
+	<div id="footer">
+		Copyright © Testcenter, 2011
+	</div>
+</div>	
+	<div id="preload">
+		<img src="../images/title.png">				
+	</div>
 	</body>
 </html>

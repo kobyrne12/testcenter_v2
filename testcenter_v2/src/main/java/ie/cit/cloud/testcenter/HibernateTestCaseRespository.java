@@ -48,17 +48,24 @@ public class HibernateTestCaseRespository implements TestCaseRepository {
     public void delete(TestCase testcase) {
 	em.remove(testcase);
     }
+    
+    public void deleteAllTestWithID(Long id) {
+    	Query query = em.createQuery("delete from TestCase where testPlanID=:testPlanID");      	
+    	query.setParameter("testPlanID", id);
+    	query.executeUpdate();		
+    }
     @SuppressWarnings("unchecked")
-    public Collection<TestCase> findAllTestCasesByID(TestPlan testplan) {
-    	Query query = em.createQuery("from TestCase where testplanName=:testplanName"); 
+    public Collection<TestCase> findAllTestCasesByID(Long testplanID,TestPlan testplan) {
+    	Query query = em.createQuery("from TestCase where testplanID=:testplanID"); 
     	//TestPlan testplan = testplanService.getTestPlan(testplan);
-    	query.setParameter("testplanName", testplan.getTestplanName());
+    	query.setParameter("testplanID", testplanID);
     	return (List<TestCase>) query.getResultList();
     }
     @SuppressWarnings("unchecked")
-    public Collection<TestCase> findAllTestCasesByName(String testcasename) {
-    	Query query = em.createQuery("from TestCase where testcasename=:testcasename");     	
-    	query.setParameter("testcasename", testcasename);
+    public Collection<TestCase> findAllTestCasesByName(Long testplanID,String testcasename) {
+    	Query query = em.createQuery("from TestCase where testplanID=:testplanID and testcasename=:testcasename");     	
+    	query.setParameter("testplanID", testplanID);
+    	query.setParameter("testcasename", testcasename);    	
     	return (List<TestCase>) query.getResultList();
     }
     

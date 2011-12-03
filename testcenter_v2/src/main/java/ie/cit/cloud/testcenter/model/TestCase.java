@@ -19,7 +19,10 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Transient;
 
+
+import org.hibernate.validator.constraints.Length;
 import org.hibernate.validator.constraints.NotBlank;
+import org.hibernate.validator.constraints.NotEmpty;
 
 
 @Entity(name = "TestCase")
@@ -27,25 +30,30 @@ public class TestCase {
 
     @Id    
     @GeneratedValue
-    @Column(name="testcase_id")
+    @Column(name="testCaseID")
     private Long id;   
     
     @Basic
-    @NotBlank
+    @Length(min = 2, max = 254, message = "Testcase name must be between 2 to 254 characters.")
+	@NotEmpty(message = "TestCase Name is required.")
     private String testcasename;
     
     @ManyToOne(cascade=CascadeType.ALL,fetch=FetchType.EAGER)
-    @JoinColumn(name="testplan_id",nullable = false)  
+    @JoinColumn(name="testplanID",nullable = false)  
     @Transient
     private TestPlan testplan;  
     
     @Basic
     private String testplanName;
     @Basic
+    @Column(name="testplanID")
+    private Long testplanID;
+    @Basic
     private String testcasesummary;
     @Basic
     private String testcasepre;
     @Basic
+    @Column(length=10000)
     private String testcasesteps;
     @Basic
     private String testcasepass;
@@ -69,12 +77,13 @@ public class TestCase {
     public TestCase() {	
     }
     
-    public TestCase(TestPlan testplan,String testcasename ,String testcasesummary,String testcasepre,String testcasesteps,String testcasepass,String testcaseOS) {
-    	this(testplan,testcasename,testcasesummary,testcasepre,testcasesteps,testcasepass,testcaseOS,true,false,false,false,false,false);
+    public TestCase(TestPlan testplan,Long testplanID,String testcasename ,String testcasesummary,String testcasepre,String testcasesteps,String testcasepass,String testcaseOS) {
+    	this(testplan,testplanID,testcasename,testcasesummary,testcasepre,testcasesteps,testcasepass,testcaseOS,true,false,false,false,false,false);
     }
 
-    public TestCase( TestPlan testplan,String testcasename ,String testcasesummary,String testcasepre,String testcasesteps,String testcasepass,String testcaseOS, Boolean notrun, Boolean passed, Boolean failed, Boolean inprogress, Boolean deferred, Boolean blocked) {
+    public TestCase( TestPlan testplan,Long testplanID,String testcasename ,String testcasesummary,String testcasepre,String testcasesteps,String testcasepass,String testcaseOS, Boolean notrun, Boolean passed, Boolean failed, Boolean inprogress, Boolean deferred, Boolean blocked) {
     	this.testplan = testplan;
+    	this.testplanID = testplanID;
     	this.testcasename = testcasename;
 		this.testcasesummary = testcasesummary;
 		this.testcasepre = testcasepre;
@@ -96,6 +105,14 @@ public class TestCase {
  
 	public void setTestPlan(TestPlan testplan) {
 		this.testplan = testplan;
+	}
+// Get TestPlanID
+	public Long getTestPlanID() {
+		return this.testplanID;
+	}
+ 
+	public void setTestPlanID(Long testplanID) {
+		this.testplanID = testplanID;
 	}
   /////////////////
     /*public TestPlan getTestPlan()

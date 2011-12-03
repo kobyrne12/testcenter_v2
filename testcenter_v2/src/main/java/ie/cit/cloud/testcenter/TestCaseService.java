@@ -18,9 +18,9 @@ import java.util.Collection;
  */
 public interface TestCaseService {
 
-    Collection<TestCase> getAllTestCasesByID(TestPlan testplan);
+    Collection<TestCase> getAllTestCasesByID(Long testplanID,TestPlan testplan);
     
-    Collection<TestCase> getAllTestCasesByName(String testcasename);
+    Collection<TestCase> getAllTestCasesByName(Long testplanID,String testcasename);
     
     Collection<TestCase> getAllTestCases();
 
@@ -46,5 +46,12 @@ public interface TestCaseService {
 
 
     void updateTestCaseWithId(Long id, TestCase testcase);
+
+	void removeAllTestWithID(Long id);
+	
+	void updateTestCaseDetails(Long testplanID,String testplanName, TestPlan testplan,Long testcaseID, 
+			String testcasename, String testcasesummary, String testcasepre, String testcasesteps,
+			String testcasepass, String testcaseOS,TestCase testcase);
+	
 
 }

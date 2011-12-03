@@ -26,9 +26,12 @@ public interface TestPlanService {
     TestPlan getTestPlanByName(String testplanname);
     
     void update(TestPlan testplan);
-
+    
     void remove(Long id);
 
     void updateTestPlanWithId(Long id, TestPlan testplan);
-
+    
+    void updateTestPlanNameWithId(Long id, TestPlan testplan,String testplanName);
+    
+    boolean updateTestPlan(Long id, TestPlan testplan);
 }
