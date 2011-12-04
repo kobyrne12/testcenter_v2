@@ -49,12 +49,12 @@
 			<li><span><a href="../index.html">Home</a></span></li>			
 			<li><span><a href="../viewtests/viewtestplan.html">Test Plans</a></span></li>
 			<security:authorize ifAllGranted="ROLE_ADMIN">
-			<li><span><a href="newtestplan.html">New Test Plan</a></span></li> 				
-			<li><span><a href="newtestcase.html?testplanID=${testplan.id}">New Test Case</a></span></li>
+				<li><span><a href="newtestplan.html">New Test Plan</a></span></li> 				
+				<li><span><a href="newtestcase.html?testplanID=${testplan.id}">New Test Case</a></span></li>
 			</security:authorize>	
 			<li><span class="current">Enter Results</span></li>		
 			<security:authorize ifAnyGranted="ROLE_USER,ROLE_ADMIN">	
-			<li><span><a href="../j_spring_security_logout">Logout</a></span></li>	
+				<li><span><a href="../j_spring_security_logout">Logout</a></span></li>	
 			</security:authorize>		
 		</ul>
 	</div>
@@ -115,112 +115,112 @@
 				<table border="0" width="100%" style="border-collapse: collapse;"> 
 				<tr>	
 					<security:authorize ifAllGranted="ROLE_ADMIN">		
-					<td width="15">
+					<td width="15" valign="top" >
 					
 						<form name="edittestcase" action="edittestcase.html" method="get">					
-							<input hidden="true" name="testplanID" value="${testplan.id}">	
-							<input hidden="true" name="testcaseID" value="${testcase.id}">						
-							<input type="image" src="../images/edit.png" width="15" alt="Edit Testcase" title="Edit Testcase">
+							<input type="hidden" name="testplanID" value="${testplan.id}">	
+							<input type="hidden" name="testcaseID" value="${testcase.id}">						
+							<input type="image" src="../images/edit.png" width="17" alt="Edit Testcase" title="Edit Testcase">
 						</form>		
 					</td>
 					</security:authorize>
 					<!--  <td>${testcase.id}</td>-->					
-					<td width="10">
+					<td width="10" valign="top">
 					</td>
-					<td id="TestDetailsCell_${testplan.id}" style="color:#707070;" >
+					<td id="TestDetailsCell_${testplan.id}" style="color:#707070;" valign="top" >
 						${testcase.testcasename}
 					</td>				
 					<td width="30">
 					</td>
-					<td align="right" width="100">
+					<td align="right" width="115" valign="top">
 						<font color="#808080">${testcase.testcaseOS}</font>
 					</td>	
 					<td width="15">
 					</td>
-					<td align="right" width="100">
+					<td align="right" width="115" valign="top">
 					<security:authorize ifAnyGranted="ROLE_ADMIN">
 						<!-- Set states table -->
 						<table>
 						<tr>
-						<td>
+						<td valign="top">
 						<c:choose>
 							<c:when test="${testcase.notrun}">
 								<img src="../images/NA.png" alt="Not Run" title="Not Run">
 							</c:when>
 							<c:otherwise>
 								<form name="notrun" action="notrun.html" method="get">
-									<input hidden="true" name="id" value="${testcase.id}">
-									<input hidden="true" name="testplanID" value="${testplan.id}">								
+									<input type="hidden" name="id" value="${testcase.id}">
+									<input type="hidden" name="testplanID" value="${testplan.id}">								
 									<input type="image" src="../images/NA_blank.PNG" alt="Not Run" title="Not Run">
 								</form>
 							</c:otherwise>
 						</c:choose>	
 						</td>
-						<td>
+						<td valign="top">
 						<c:choose>
 							<c:when test="${testcase.passed}">
 								<img src="../images/ok.png" alt="Passed" title="Passed" >
 							</c:when>
 							<c:otherwise>
 								<form name="passed" action="passed.html" method="get">
-									<input hidden="true" name="id" value="${testcase.id}">
-									<input hidden="true" name="testplanID" value="${testplan.id}">
+									<input type="hidden" name="id" value="${testcase.id}">
+									<input type="hidden" name="testplanID" value="${testplan.id}">
 									<INPUT type="image" src="../images/ok_blank.PNG" alt="Passed" title="Passed">
 								</form>
 							</c:otherwise>
 						</c:choose>	
 						</td>
-						<td>
+						<td valign="top">
 						<c:choose>
 							<c:when test="${testcase.failed}">
 								<img src="../images/no.png" alt="Failed" title="Failed">
 							</c:when>
 							<c:otherwise>
 								<form name="failed" action="failed.html" method="get">
-									<input hidden="true" name="id" value="${testcase.id}">
-									<input hidden="true" name="testplanID" value="${testplan.id}">
+									<input type="hidden" name="id" value="${testcase.id}">
+									<input type="hidden" name="testplanID" value="${testplan.id}">
 									<INPUT type="image" src="../images/no_blank.PNG" alt="Failed" title="Failed">
 								</form>
 							</c:otherwise>
 						</c:choose>	
 						</td>
-						<td>
+						<td valign="top">
 						<c:choose>
 							<c:when test="${testcase.inprogress}">
 								<img src="../images/IP.png" alt="In Progress" title="In Progress">
 							</c:when>
 							<c:otherwise>
 								<form name="inprogress" action="inprogress.html" method="get">
-									<input hidden="true" name="id" value="${testcase.id}">
-									<input hidden="true" name="testplanID" value="${testplan.id}">
+									<input type="hidden" name="id" value="${testcase.id}">
+									<input type="hidden" name="testplanID" value="${testplan.id}">
 									<INPUT type="image" src="../images/IP_blank.PNG" alt="In Progress" title="In Progress">
 								</form>
 							</c:otherwise>
 						</c:choose>
 						</td>
-						<td>
+						<td valign="top">
 						<c:choose>
 							<c:when test="${testcase.deferred}">
 								<img src="../images/def.png" alt="Deferred" title="Deferred">
 							</c:when>
 							<c:otherwise>
 								<form name="deferred" action="deferred.html" method="get">
-									<input hidden="true" name="id" value="${testcase.id}">
-									<input hidden="true" name="testplanID" value="${testplan.id}">
+									<input type="hidden" name="id" value="${testcase.id}">
+									<input type="hidden" name="testplanID" value="${testplan.id}">
 									<INPUT type="image" src="../images/def_blank.PNG" alt="Deferred" title="Deferred">
 								</form>
 							</c:otherwise>
 						</c:choose>
 						</td>
-						<td>	
+						<td valign="top">	
 						<c:choose>
 							<c:when test="${testcase.blocked}">
 								<img src="../images/block.png" alt="Blocked" title="Blocked">
 							</c:when>
 							<c:otherwise>
 								<form name="blocked" action="blocked.html" method="get">
-									<input hidden="true" name="id" value="${testcase.id}">
-									<input hidden="true" name="testplanID" value="${testplan.id}">
+									<input type="hidden" name="id" value="${testcase.id}">
+									<input type="hidden" name="testplanID" value="${testplan.id}">
 									<INPUT type="image" src="../images/block_blank.png" alt="Blocked" title="Blocked">
 								</form>
 							</c:otherwise>
@@ -256,10 +256,10 @@
 					<td width="15">
 					</td>
 					<security:authorize ifAllGranted="ROLE_ADMIN">
-					<td align="right" width="15">	
+					<td align="right" width="15" valign="top">	
 						<form name="deletetestcase" action="deletetestcase.html" method="get">
-							<input hidden="true" name="id" value="${testcase.id}">
-							<input hidden="true" name="testplanID" value="${testplan.id}">
+							<input type="hidden" name="testcaseID" value="${testcase.id}">
+							<input type="hidden" name="testplanID" value="${testplan.id}">
 							<INPUT type="image" src="../images/delete.png" alt="Delete Test" title="Delete Test"  onclick="return confirm('Are you sure you want to delete : \n\n  ${testcase.testcasename} ?')">
 						</form>										
 					</td>	
@@ -275,43 +275,41 @@
 			</td>
 		</tr>
 		<tr>				
-					<td id="TestDetails_${testcase.id}" style="display:none;"  align="center"> 
-						<table border="0">
+			<td id="TestDetails_${testcase.id}" style="display:none;"  align="center"> 
+				<table border="0" width="95%">
+				<tr>					
+					<td width="90%" style="background-color:#E6E8FA;border-color: #707070; border-width: 1px 2px 2px 1px; " >
+						<table width="100%" border="0" class="maintable" cellpadding="6" >														
 						<tr>
-							<td width="5%"></td>
-							<td style="background-color:#E6E8FA;border-color: #707070; border-width: 1px 2px 2px 1px; " width="90%">
-								<table border="0" class="maintable" cellpadding="6" >														
-								<tr>
-									<td>                           
-										<font color="#707070"><b>Test Summary:</b></font><BR>
-										<textarea  rows="2" name="Summary_${testcase.id}" id="Summary_${testcase.id}"  readonly="readonly" cols="115" style="overflow:visible;background-color:#FAF8E5;border:none;color:#707070;font-family: Verdana;">${testcase.testcasesummary}</textarea>
-									</td>									
-								</tr>	
-								<tr>
-									<td>                           
-										<font color="#707070"><b>Test Pre Conditions:</b></font><BR>
-										<textarea  rows="2" name="PreCond${testcase.id}" id="PreCond${testcase.id}"  readonly="readonly" cols="115" style="overflow:visible;background-color:#FAF8E5;border:none;color:#707070;font-family: Verdana;">${testcase.testcasepre}</textarea>
-									</td>									
-								</tr>									
-								<tr>
-									<td>
-										<font color="#707070">Test Steps:</font><BR>
-										<textarea  rows="9" name="Steps${testcase.id}" id="Steps${testcase.id}"  readonly="readonly" cols="115" style="overflow:visible;background-color:#FAF8E5;border:none;color:#707070;font-family: Verdana;">${testcase.testcasesteps}</textarea>
-									</td>									
-								</tr>		
-								<tr>
-									<td>                           
-										<font color="#707070"><b>Test Pass Conditions:</b></font><BR>
-										<textarea  rows="2" name="PassCond${testcase.id}" id="PassCond${testcase.id}"  readonly="readonly" cols="115" style="overflow:visible;background-color:#FAF8E5;border:none;color:#707070;font-family: Verdana;">${testcase.testcasepass}</textarea>
-									</td>									
-								</tr>													
-								</table>
-							</td>
-							<td width="5%"></td>
-						</tr>
-						</table>					
-					</td>
-				</tr>			
+							<td>                           
+								<font color="#707070"><b>Test Summary:</b></font><BR>
+								<textarea class="enterresults" name="Summary_${testcase.id}" id="Summary_${testcase.id}"  readonly="readonly"  style="overflow:visible;background-color:#FAF8E5;border:none;color:#707070;font-family: Verdana;">${testcase.testcasesummary}</textarea>
+							</td>									
+						</tr>	
+						<tr>
+							<td>                           
+								<font color="#707070"><b>Test Pre Conditions:</b></font><BR>
+								<textarea class="enterresults" name="PreCond${testcase.id}" id="PreCond${testcase.id}"  readonly="readonly" style="overflow:visible;background-color:#FAF8E5;border:none;color:#707070;font-family: Verdana;">${testcase.testcasepre}</textarea>
+							</td>									
+						</tr>									
+						<tr>
+							<td>
+								<font color="#707070"><b>Test Steps:</b></font><BR>
+								<textarea class="enterresultssteps" name="Steps${testcase.id}" id="Steps${testcase.id}"  readonly="readonly"  style="overflow:visible;background-color:#FAF8E5;border:none;color:#707070;font-family: Verdana;">${testcase.testcasesteps}</textarea>
+							</td>									
+						</tr>		
+						<tr>
+							<td>                           
+								<font color="#707070"><b>Test Pass Conditions:</b></font><BR>
+								<textarea  class="enterresults" name="PassCond${testcase.id}" id="PassCond${testcase.id}"  readonly="readonly"style="overflow:visible;background-color:#FAF8E5;border:none;color:#707070;font-family: Verdana;">${testcase.testcasepass}</textarea>
+							</td>									
+						</tr>													
+						</table>
+					</td>					
+				</tr>
+				</table>					
+			</td>
+		</tr>			
 		</c:forEach>
 		<security:authorize ifAllGranted="ROLE_ADMIN">
 		<tr>			

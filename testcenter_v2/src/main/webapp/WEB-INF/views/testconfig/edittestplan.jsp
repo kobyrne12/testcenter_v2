@@ -39,8 +39,8 @@
 		 	<hr>
 		</c:if>		
 		<form method="post">	
-		<input hidden="true" name="testername" value="${testplanTester}">				
-		<input hidden="true" name="testplanID" value="${testplanID}">	
+		<input type="hidden" name="testername" value="${testplanTester}">				
+		<input type="hidden" name="testplanID" value="${testplanID}">	
 		<table align="center">
 		<tr>		
 			<td width="20"></td>

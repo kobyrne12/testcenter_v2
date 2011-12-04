@@ -38,7 +38,7 @@
 		 	<hr>
 		</c:if>		
 		<form method="post">	
-		<input hidden="true" name="testername" value="<security:authentication property="principal.username"/>">
+		<input type="hidden" name="testername" value="<security:authentication property="principal.username"/>">
 				
 				<table border="0" cellpadding="5" align="center">		
 				<tr>

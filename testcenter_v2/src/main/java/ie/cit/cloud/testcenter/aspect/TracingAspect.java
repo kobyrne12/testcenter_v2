@@ -8,15 +8,12 @@ package ie.cit.cloud.testcenter.aspect;
  *
  */
 
-import javax.persistence.NoResultException;
-
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.aspectj.lang.JoinPoint;
 import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Before;
 import org.aspectj.lang.annotation.After;
-import org.aspectj.lang.annotation.AfterThrowing;
 import org.springframework.stereotype.Component;
 
 @Aspect

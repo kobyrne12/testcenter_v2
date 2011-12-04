@@ -8,8 +8,7 @@
 		<title>TestCenter - New Test Case</title>
 		<link rel="stylesheet" href="../css/style.css" type="text/css" media="screen" />
 	</head>
-	<body>			
-	
+<body>			
 <div id="container">
 	<div id="header">
 		<a href="../index.html"><img src="../images/title.png"></a>		
@@ -44,38 +43,38 @@
 		<a href="enterresults.html?testplanID=${testplanID}">${testplanName}</a>  -  ${testplanTester} :
 		<BR /> <BR />	
 		<form method="post">
-		<input hidden="true" name="testplanID" value="${testplanID}">		
-		<table  align="center">
+		<input type="hidden" name="testplanID" value="${testplanID}">		
+		<table  width="100%" border="0" align="center">
 		<tr>
-			<td valign="top">
+			<td valign="top" width="50%">
 				<!-- Left side -->
-				<table >
+				<table border="0" width="100%">
 				<tr>
 					<td>
 						Test Title:<br>
-						<input type="text" name="testcasename" size="65" >	
+						<input class="testcasetitle" type="text" name="testcasename" >	
 					</td>
 				</tr>
 				<tr>
 					<td >
 						Test Summary:<br>
-						<textarea name="testcasesummary" cols="50" rows="3" ></textarea>
+						<textarea name="testcasesummary"  class="testcase"></textarea>
 					</td>
 				</tr>
 				<tr>
 					<td>
 						Test Preconditions:<br>
-						<textarea name="testcasepre" cols="50" rows="3"></textarea>
+						<textarea name="testcasepre" class="testcase"></textarea>
 					</td>
 				</tr>
 				<tr>
 					<td>
 						Test Pass conditions:<br>
-						<textarea name="testcasepass" cols="50" rows="3"></textarea>
+						<textarea name="testcasepass" class="testcase"></textarea>
 					</td>
 				</tr>
 				<tr>
-					<td width="50%">
+					<td width="100%">
 						Test OS:<br>
 						<select name="testcaseOS">													
 							<option value="Windows x32">Windows x32</option>													
@@ -88,12 +87,13 @@
 				</tr>				
 				</table>
 			</td>
-			<td>
-				<table border="0">
+			<td width="50%">
+				<!-- Right side -->
+				<table border="0" width="100%">
 				<tr>
 					<td>
 						Test Steps:<br>
-						<textarea name="testcasesteps" cols="50" rows="18"></textarea>				
+						<textarea name="testcasesteps" class="testcasesteps"></textarea>				
 					</td>
 				</tr>
 				<tr>
