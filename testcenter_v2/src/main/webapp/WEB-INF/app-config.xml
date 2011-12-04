@@ -20,8 +20,8 @@
 	</context:component-scan>
 
 	
-	<jdbc:embedded-database id="dataSource" type="H2" />
-	<!-- <cloud:data-source id="dataSource" /> -->
+	<!-- <jdbc:embedded-database id="dataSource" type="H2" />-->
+	<cloud:data-source id="dataSource" />
 
 	<bean id="org.h2.tools.Server-WebServer" class="org.h2.tools.Server"
 		factory-method="createWebServer" depends-on="dataSource" init-method="start"
