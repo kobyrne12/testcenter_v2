@@ -206,7 +206,6 @@ public class TestcenterController {
     	else
     	{
     		// Test case already exists
-    		System.out.println("here ---: "+testcaseService.getAllTestCasesByName(testplanID,testcasename));    	
     		return "redirect:newtestcase.html?testplanID="+testplanID+"&errormessage="+testcasename+" already exists";	
     				   	
     	}
@@ -260,8 +259,7 @@ public class TestcenterController {
     	else
     	{
     		return "redirect:enterresults.html?testplanID="+testplanID_changed+"&successmessage="+testcasename+" Updated";	 
-    	}
-    	
+    	}    	
     }     
     
     // enterResults()

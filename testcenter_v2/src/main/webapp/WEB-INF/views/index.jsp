@@ -49,16 +49,30 @@
 		<td width="45%" align="center">	
 			<fieldset>
 			<legend>Enter Login Details:</legend>	
-			 <table border='0' width="350" height="150">
+			 <table border='0' width="100%" height="150">
 			 	<tr>
 			    	<td height="5">
 			    		<!-- spacer -->
 			    	</td>
 			    </tr>
-			    <tr><td>User:</td><td><input type='text' name='j_username' value=''></td></tr>
-			    <tr><td>Password:</td><td><input type='password' name='j_password'/></td></tr>
 			    <tr>
-			    	<td>
+			    	<td align="left" width="30%">
+			    		User:
+			    	</td>
+			    	<td align="left" width="70%">
+			    		<input type='text' name='j_username' value='' class="indexusername">
+			    	</td>
+			    </tr>
+			    <tr>
+			    	<td align="left" width="30%">
+			    		Password:
+			    	</td>
+			    	<td align="left" width="70%">
+			    		<input type='password' name='j_password' class="indexpassword"/>
+			    	</td>
+			    </tr>
+			    <tr>
+			    	<td align="left" colspan='2'> 
 			    		<input type="checkbox" id="remember_me" name="_remember_me" checked />
 			    		<label for="remember_me">Keep me logged in</label>
 			    	</td>		    
@@ -85,19 +99,19 @@
 		  <td width="45%" align="center">
 		  	<fieldset>
 			    <legend>Test Login Details:</legend>
-			    <table cellpadding="5" width="350" height="150">
+			    <table cellpadding="5" width="100%" height="150">
 			    <tr>
 			    	<td height="5">
 			    		<!-- spacer -->
 			    	</td>
 			    </tr>
 			    <tr>
-			    	<td>Admin Details:</td>
+			    	<td align="left">Admin Details:</td>
 			    	<td>kenneth</td>
 			    	<td>password</td>
 			    </tr>
 			    <tr>
-			    	<td>User Details:</td>
+			    	<td align="left">User Details:</td>
 			    	<td>igor</td>
 			    	<td>password</td>
 			    </tr>

@@ -138,14 +138,8 @@ textarea.testcasesteps
 	width: 99%;
 	height: 275px;
 }
-input.testcasetitle
-{
-	width: 99%;	
-}
-input[type=text] 
-{ 
-	width: 99%;	
-} 
+
+
 textarea.enterresults{
 	width: 99%;
 	height: 40px;
@@ -156,3 +150,23 @@ textarea.enterresultssteps
 	height: 100px;
 }
 
+input.testcasetitle
+{
+	width: 99%;	
+}
+input[type=text] 
+{ 
+	width: 99%;	
+}
+input.indexusername
+{
+	width: 96%;	
+}
+input.indexpassword
+{
+	width: 96%;	
+}
+input[type=password] 
+{ 
+	width: 96%;	
+} 
