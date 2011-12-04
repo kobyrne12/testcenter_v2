@@ -43,16 +43,7 @@ public class TestcenterController {
     	model.addAttribute("errormessage", errormessage);		
     	return "index";
     }    
-    
-    // accessDenied()
- 	// Opens the accessdenied page with the login details if a user try to access a page
- 	// they dont have access to
-    @RequestMapping(value = { "testconfig/accessdenied"}, method = GET)
-    public String accessDenied(@RequestParam(required = false) String errormessage,Model model) {	
-    	model.addAttribute("errormessage", errormessage);		
-    	return "index";
-    }    
-    
+  
     // newtestplan()
  	// Opens the newtestplan page where the admin user can enter a new testt plan
  	// Includes both error and success message if one sent
@@ -239,26 +230,21 @@ public class TestcenterController {
     @RequestMapping(value = { "testconfig/edittestcase"}, method = POST)   
     public String updateTestCase(@RequestParam Long testplanID,Long testplanID_changed,Long testcaseID,String testcasename,String testcasesummary,String testcasepre,String testcasesteps,String testcasepass,String testcaseOS, Model model)
     {   
-    	testcaseService.updateTestCaseDetails(testplanID_changed,testplanService.getTestPlan(testplanID_changed).getTestplanName(),testplanService.getTestPlan(testplanID_changed),
-    	testcaseID, testcasename,testcasesummary,testcasepre,testcasesteps,testcasepass,testcaseOS,testcaseService.getTestCase(testcaseID));
-    	if (testplanID_changed != testplanID)
-    	{
-    		// Test case Was moved to new test plan so an update of test results need to be implemented
-    		if (testcaseService.getAllTestCasesByName(testplanID_changed,testcasename).isEmpty())
-        	{    
-    			// No Test case of this name Exists
-    			testplanService.updateTestPlan(testplanID,testplanService.getTestPlan(testplanID));
+    	if (testcaseService.getAllTestCasesByName(testplanID_changed,testcasename).isEmpty())
+        {    
+    		// No Test case of this name Exists
+    		testcaseService.updateTestCaseDetails(testplanID_changed,testplanService.getTestPlan(testplanID_changed).getTestplanName(),testplanService.getTestPlan(testplanID_changed),
+    		    	testcaseID, testcasename,testcasesummary,testcasepre,testcasesteps,testcasepass,testcaseOS,testcaseService.getTestCase(testcaseID));
+    		if (testplanID_changed != testplanID)
+    	    {
+    			testplanService.updateTestPlan(testplanID,testplanService.getTestPlan(testplanID));    	    	
     			testplanService.updateTestPlan(testplanID_changed,testplanService.getTestPlan(testplanID_changed));
-    			return "redirect:enterresults.html?testplanID="+testplanID_changed+"&successmessage="+testcasename+" Updated";	    		    
-        	}
-    		else
-    		{
-    			return "redirect:edittestcase.html?testplanID="+testplanID+"&testcaseID="+testcaseID+"&errormessage=Cannot Move "+testcasename+" To "+ testplanService.getTestPlan(testplanID_changed).getTestplanName()+" because a Test case with the same name already exists";	 
-    		}
-    	}
+    	    }
+    		return "redirect:enterresults.html?testplanID="+testplanID_changed+"&successmessage="+testcasename+" Updated";	    		    
+        }
     	else
     	{
-    		return "redirect:enterresults.html?testplanID="+testplanID_changed+"&successmessage="+testcasename+" Updated";	 
+    		return "redirect:edittestcase.html?testplanID="+testplanID+"&testcaseID="+testcaseID+"&errormessage=Cannot Move "+testcasename+" To "+ testplanService.getTestPlan(testplanID_changed).getTestplanName()+" because a Test case with the same name already exists";	 
     	}    	
     }     
     

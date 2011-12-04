@@ -48,10 +48,10 @@ public class TestCaseServiceImplTest {
 	    }  
 	    
 	    @Test
-	    public void testFindTestCases() {     	
-	    	Long id = null;
-			tested.getTestCase(id);
-			Mockito.verify(repo).findById(id);
+	    public void testFindTestCase() {     	
+	    	TestCase testcase = new TestCase();
+			tested.getTestCase(testcase.getId());
+			Mockito.verify(repo).findById(testcase.getId());
 	    }  
 	    
 	    @Test
@@ -71,16 +71,16 @@ public class TestCaseServiceImplTest {
 	    
 	    @Test
 	    public void testRemoveTestCase() {
-	    	Long id = null;    	
-	    	tested.remove(id);
+	    	TestCase testcase = new TestCase();    	
+	    	tested.remove(testcase.getId());
 	    	Mockito.verify(repo).delete(null);
 	    }
 	    
 	    @Test
 	    public void testRemoveAllTestCaseWithID() {
-	    	Long id = null;      	 
-	    	tested.removeAllTestWithID(id);
-	    	Mockito.verify(repo).deleteAllTestWithID(id);
+	    	TestPlan testplan = new TestPlan();    	 
+	    	tested.removeAllTestWithID(testplan.getId());
+	    	Mockito.verify(repo).deleteAllTestWithID(testplan.getId());
 	    } 	    
 }
 

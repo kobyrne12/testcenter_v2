@@ -44,7 +44,7 @@
 		<font size="1" color="#7F94B0">note : click test plan to enter results </font>
 		<BR/><BR/>
 		
-		<table border="0" cellpadding="5" cellspacing="3" align="center">			
+		<table border="0" cellpadding="4" cellspacing="3" align="center">			
 			<tr style="background-color:#7F94B0">
 				<security:authorize ifAllGranted="ROLE_ADMIN">				
 				<td style="background-color:#ffffff">					
@@ -87,38 +87,38 @@
 					<td>									
 						<form name="edittestplan" action="../testconfig/edittestplan.html" method="get">
 							<input type="hidden" name="testplanID" value="${testplan.id}">							
-							<input type="image" src="../images/edit.png" alt="Edit Testplan" title="Edit Testplan">
+							<input type="image" src="../images/edit.png" alt="Edit Testplan" title="Edit Testplan" width="15">
 						</form>							
 					</td>	
 					</security:authorize>				
-					<td>
+					<td valign="top">
 						<font color="#707070">${testplan.id}</font>
 					</td>
-					<td>		
+					<td  valign="top">		
 						<a href="../testconfig/enterresults.html?testplanID=${testplan.id}">${testplan.testplanName}</a> 										
 					</td>
-					<td>
+					<td  valign="top">
 						<font color="#707070">${testplan.testerName}</font>
 					</td>					
-					<td align="center">
+					<td  valign="top" align="center">
 						<font color="lightblue">${testplan.totalTests}</font>
 					</td>
-					<td align="center">
+					<td   valign="top" align="center">
 						<font color="navy">${testplan.totalNotRun}</font>
 					</td>
-					<td align="center">
+					<td  valign="top" align="center">
 						<font color="green">${testplan.totalPassed}</font>
 					</td>
-					<td align="center">
+					<td  valign="top" align="center">
 						<font color="red">${testplan.totalFailed}</font>
 					</td>
-					<td align="center">
+					<td  valign="top" align="center">
 						<font color="orange">${testplan.totalInProgress}</font>
 					</td>
-					<td align="center">
+					<td  valign="top" align="center">
 						<font color="purple">${testplan.totaldeferred}</font>
 					</td>
-					<td align="center">
+					<td  valign="top" align="center">
 						<font color="#505050">${testplan.totalBlocked}</font>
 					</td>
 					<security:authorize ifAllGranted="ROLE_ADMIN">			
